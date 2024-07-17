@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "USERS" ALTER COLUMN "status" SET DATA TYPE TEXT;
