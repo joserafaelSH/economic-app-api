@@ -22,27 +22,26 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
     "tsup": "^8.1.0",
     "tsx": "^4.15.5",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0",
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@typescript-eslint/parser": "^5.59.5"
+    "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@fastify/swagger": "^8.14.0",
-    "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "^5.15.1",
     "@types/bcrypt": "^5.0.2",
+    "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
     "bcrypt": "^5.1.1",
     "dotenv-cli": "^7.4.2",
-    "fastify": "^4.28.0",
-    "fastify-type-provider-zod": "^1.2.0",
+    "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^5.15.1",
     "uuidv7": "^1.0.0",
     "vite-tsconfig-paths": "^4.3.2",
+    "winston": "^3.13.1",
     "zod": "^3.23.8"
   },
   "prisma": {

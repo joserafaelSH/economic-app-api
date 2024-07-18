@@ -5,7 +5,7 @@ export class BcryptHash implements Hash {
   constructor() {}
 
   async make(textPassword: string): Promise<string> {
-    return await bcrypt.hash(textPassword, process.env.SALTS!);
+    return await bcrypt.hash(textPassword, Number(process.env.SALTS!));
   }
 
   async compare(

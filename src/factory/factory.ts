@@ -14,7 +14,7 @@ import { GetExpenses } from "@/services/get-expenses/GetExpenses";
 import { UpdateAccount } from "@/services/update-account/UpdateAccount";
 import { UpdateExpense } from "@/services/update-expense/UpdateExpense";
 
-const prismaClient = new PrismaClient({ log: ["query"] });
+const prismaClient = new PrismaClient();
 const expenseRepository: ExpenseRepository = new ExpensePrismaRepository(
   prismaClient
 );
