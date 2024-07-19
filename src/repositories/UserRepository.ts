@@ -6,4 +6,5 @@ export interface UserRepository {
   save(user: User): Promise<void>;
   update(user: User): Promise<void>;
   delete(id: string): Promise<void>;
+  findByExternalId(external_id: string): Promise<User | null>;
 }

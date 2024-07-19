@@ -1,7 +1,8 @@
-import { randomUUID } from "crypto";
+import { Expense } from "@/entities/Expense";
+import { UserNotFoundError } from "@/errors/errors";
 import { ExpenseRepository } from "@/repositories/ExpenseRepository";
 import { UserRepository } from "@/repositories/UserRepository";
-import { Expense } from "@/entities/Expense";
+import { randomUUID } from "crypto";
 
 export type Input = {
   name: string;
@@ -23,7 +24,7 @@ export class CreateExpense {
   async execute(input: Input): Promise<Output> {
     const user = await this.userRepository.findById(input.user_id);
     if (!user) {
-      throw new Error("User not found");
+      throw new UserNotFoundError("User not found");
     }
 
     const expense = new Expense(

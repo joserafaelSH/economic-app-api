@@ -1,10 +1,9 @@
-import { beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { Input } from "./UpdateAccount";
-import { UserRepository } from "@/repositories/UserRepository";
 import { UserInMemoryRepository } from "@/database/in-memory/UserInMemoryRepository";
-import { faker } from "@faker-js/faker";
-import { UpdateAccount } from "./UpdateAccount";
 import { User } from "@/entities/User";
+import { UserRepository } from "@/repositories/UserRepository";
+import { faker } from "@faker-js/faker";
+import { beforeAll, beforeEach, describe, expect, it } from "vitest";
+import { Input, UpdateAccount } from "./UpdateAccount";
 
 describe("UpdateAccount tests", () => {
   let updateAccount: UpdateAccount;

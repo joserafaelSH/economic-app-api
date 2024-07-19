@@ -1,34 +1,35 @@
 import { User } from "@/entities/User";
-import { EmailAlreadyInUseError } from "@/errors/errors";
 import { Hash } from "@/libs/bcrypt/hash";
 import { UserRepository } from "@/repositories/UserRepository";
 import { randomUUID } from "crypto";
 
 export type Input = {
   name: string;
-  email: string;
   monthly_budget: number;
-  password: string;
-  external_id: string | null;
+  external_id: string;
+  avatar: string;
 };
 
 export type Output = void;
 
-export class CreateAccount {
+export class CreateAccountGithub {
   constructor(readonly userRepository: UserRepository, readonly hash: Hash) {}
 
   async execute(input: Input): Promise<Output> {
-    const findUserByEmail = await this.userRepository.findByEmail(input.email);
-    if (findUserByEmail) {
-      throw new EmailAlreadyInUseError("Email already in use");
+    const findUserByExternalId = await this.userRepository.findByExternalId(
+      input.external_id
+    );
+    if (findUserByExternalId) {
+      throw new Error("Email already in use");
     }
 
-    const password = await this.hash.make(input.password);
+    const randomPassword = randomUUID();
+    const password = await this.hash.make(randomPassword);
 
     const user = new User(
       randomUUID(),
       input.name,
-      input.email,
+      null,
       input.monthly_budget,
       password,
       "user",

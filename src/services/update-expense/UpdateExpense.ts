@@ -3,11 +3,11 @@ import { ExpenseRepository } from "@/repositories/ExpenseRepository";
 export type Input = {
   userId: string;
   id: string;
-  name: string | null;
-  description: string | null;
-  amount: number | null;
-  category: string | null;
-  date: Date | null;
+  name?: string | null;
+  description?: string | null;
+  amount?: number | null;
+  category?: string | null;
+  date?: Date | null;
 };
 
 export type Output = void;

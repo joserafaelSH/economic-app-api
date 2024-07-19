@@ -1,9 +1,25 @@
-import { router } from "./http/express-router";
-import { ExpressServer } from "./http/express-server";
-import { Logger } from "./libs/logger/logger";
-import { WinstonLogger } from "./libs/logger/winston-logger";
+import os from "node:os";
+import cluster from "node:cluster";
 
-const logger: Logger = new WinstonLogger("express-server");
-const server = new ExpressServer(router, logger);
+const main = () => {
+  const processesCount = Number(process.env.CPUS) || os.cpus().length;
+  console.log(`Primary ${process.pid} is running`);
+  console.log(`Forking Server with ${processesCount} processes \n`);
 
-server.start();
+  for (let index = 0; index < processesCount; index++) cluster.fork();
+
+  cluster.on("exit", (worker, code) => {
+    if (code !== 0 && !worker.exitedAfterDisconnect) {
+      console.log(
+        `Worker ${worker.process.pid} died... scheduling another one!`
+      );
+      cluster.fork();
+    }
+  });
+};
+
+const workers = async () => {
+  await import("./server.js");
+};
+
+cluster.isPrimary ? main() : workers();

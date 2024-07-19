@@ -1,10 +1,24 @@
+export type UserProps = {
+  id: string;
+  name: string;
+  email: string | null;
+  monthly_budget: number;
+  password: string | null;
+  role: string;
+  status: string;
+  avatar: string | null;
+  external_id: string | null;
+  updated_at: Date;
+  created_at: Date;
+};
+
 export class User {
   constructor(
     public id: string,
     public name: string,
-    public email: string,
+    public email: string | null,
     public monthly_budget: number,
-    public password: string,
+    public password: string | null,
     public role: string,
     public status: string,
     public avatar: string | null,
@@ -29,17 +43,3 @@ export class User {
     };
   }
 }
-
-export type UserProps = {
-  id: string;
-  name: string;
-  email: string;
-  monthly_budget: number;
-  password: string;
-  role: string;
-  status: string;
-  avatar: string | null;
-  external_id: string | null;
-  updated_at: Date;
-  created_at: Date;
-};

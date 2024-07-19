@@ -1,11 +1,14 @@
-import { Expense, ExpenseProps } from "@/entities/Expense";
+import { ExpenseProps } from "@/entities/Expense";
 import { ExpenseRepository } from "@/repositories/ExpenseRepository";
-import { PaginatedResponse } from "@/repositories/PaginatedResponse";
+import {
+  PaginatedResponse,
+  PaginationProps,
+} from "@/repositories/PaginatedResponse";
 import { UserRepository } from "@/repositories/UserRepository";
 
 export type Input = {
   userId: string;
-  pagination: any;
+  pagination: PaginationProps;
 };
 
 export type Output = PaginatedResponse<ExpenseProps> | null;

@@ -13,16 +13,26 @@ import { GenerateReport } from "@/services/generate-report/GenerateReport";
 import { GetExpenses } from "@/services/get-expenses/GetExpenses";
 import { UpdateAccount } from "@/services/update-account/UpdateAccount";
 import { UpdateExpense } from "@/services/update-expense/UpdateExpense";
+import { Auth } from "@/services/auth/Auth";
+import { Jwt } from "@/libs/jwt/jwt";
+import { CreateAccountGithub } from "@/services/create-account-with-github/CreateAccountWithGithub";
 
 const prismaClient = new PrismaClient();
 const expenseRepository: ExpenseRepository = new ExpensePrismaRepository(
   prismaClient
 );
-const userRepository: UserRepository = new UserPrismaRepository(prismaClient);
+export const userRepository: UserRepository = new UserPrismaRepository(
+  prismaClient
+);
 
 const hash: Hash = new BcryptHash();
 
 export const createAccount = new CreateAccount(userRepository, hash);
+
+export const createAccountGithub = new CreateAccountGithub(
+  userRepository,
+  hash
+);
 
 export const createExpense = new CreateExpense(
   expenseRepository,
@@ -43,3 +53,7 @@ export const getExpenses = new GetExpenses(expenseRepository, userRepository);
 export const updateAccount = new UpdateAccount(userRepository);
 
 export const updateExpense = new UpdateExpense(expenseRepository);
+
+export const jwt = new Jwt();
+
+export const auth = new Auth(userRepository, jwt, hash);

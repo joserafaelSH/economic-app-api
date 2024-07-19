@@ -4,14 +4,18 @@ import { faker } from "@faker-js/faker";
 import { CreateAccount, Input } from "./CreateAccount";
 import { UserRepository } from "@/repositories/UserRepository";
 import { UserInMemoryRepository } from "@/database/in-memory/UserInMemoryRepository";
+import { Hash } from "@/libs/bcrypt/hash";
+import { BcryptHash } from "@/libs/bcrypt/bcrypt";
 
 describe("CreateAccount tests", () => {
   let createAccount: CreateAccount;
   let userRepository: UserRepository;
+  let hash: Hash;
 
   beforeAll(() => {
     userRepository = new UserInMemoryRepository();
-    createAccount = new CreateAccount(userRepository);
+    hash = new BcryptHash();
+    createAccount = new CreateAccount(userRepository, hash);
   });
 
   it("should create a new account", async () => {

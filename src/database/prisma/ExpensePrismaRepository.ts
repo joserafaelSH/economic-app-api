@@ -1,8 +1,8 @@
 import { Expense, ExpenseProps } from "@/entities/Expense";
 import { ExpenseRepository } from "@/repositories/ExpenseRepository";
 import {
-  PaginationProps,
   PaginatedResponse,
+  PaginationProps,
 } from "@/repositories/PaginatedResponse";
 import { PrismaClient } from "@prisma/client";
 import { PrismaExpenseParser } from "./PrismaExpenseParser";
@@ -28,6 +28,17 @@ export class ExpensePrismaRepository implements ExpenseRepository {
       where: { userId },
       skip: pagination.page * pagination.limit,
       take: pagination.limit,
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        amount: true,
+        date: true,
+        category: true,
+        userId: true,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
 
     const data = expenses.map(PrismaExpenseParser.toEntityProps);

@@ -4,7 +4,7 @@ Api para uma aplicação de gerenciamento de gastos.
 
 - Arquitetura em camadas
 - Ports and Adapters
-- Injeção de dependênciasr
+- Injeção de dependências
 - Testes
 - CI/CD
 
@@ -12,22 +12,23 @@ Api para uma aplicação de gerenciamento de gastos.
 
 - [x] criar uma conta - fazer o registro de forma padrão com email e senha
 - [x] criar um gasto - registrar um gasto
-- [x] desativar uma conta
-- [x] deletar um gasto
+- [ ] desativar uma conta
+- [ ] deletar um gasto
 - [x] buscar gastos - buscar todos os gastos de um usuário
-- [x] atualizar conta - atualizar dados da conta, exceto a senha
-- [x] atualizar gasto - atualizar dados de um gasto
+- [ ] atualizar conta - atualizar dados da conta, exceto a senha
+- [ ] atualizar gasto - atualizar dados de um gasto
 - [x] gerar relatório de gastos - gerar relatório de gastos para um intervalo de tempo
-- [ ] cadastro com o GitHub - cadastro com o github
+- [x] cadastro com o GitHub - cadastro com o github
+- [x] tratamento de disponibilidade com workers, graceful shutdown e verificando processos não tratados
 
 ## TODO
 
 - [x] Implementação do domain
-- [ ] Adicionar camada http para os domain services
-- [ ] Login Authentication
-- [ ] GitHub Authentication
-- [ ] Postman documentation
-- [ ] Error handler
+- [x] Adicionar camada http para os domain services
+- [x] Login Authentication
+- [x] GitHub Authentication
+- [x] Postman documentation:
+- [x] Error handler
 
 ## Stack
 

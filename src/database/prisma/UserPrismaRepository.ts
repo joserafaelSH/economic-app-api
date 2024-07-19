@@ -6,6 +6,14 @@ import { PrismaUserParser } from "./PrismaUserParser";
 export class UserPrismaRepository implements UserRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
+  async findByExternalId(external_id: string): Promise<User | null> {
+    const user = await this.prisma.user.findFirst({
+      where: { externalId: external_id },
+    });
+    if (!user) return null;
+    return PrismaUserParser.toEntity(user);
+  }
+
   async findById(id: string): Promise<User | null> {
     const user = await this.prisma.user.findUnique({ where: { id } });
     if (!user) return null;

@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
 import { AuthToken } from "./auth-token";
 
-export type JwtPayload = { user_id: string };
+export type JwtPayload = { user_id: string; role: string };
 
 export class Jwt implements AuthToken {
-  generate(userId: string): string {
+  generate(userId: string, role: string): string {
     const options: jwt.SignOptions = {
       expiresIn: "1h",
     };
-    const payload: JwtPayload = { user_id: userId };
+    const payload: JwtPayload = { user_id: userId, role };
     return jwt.sign(payload, process.env.JWT_SECRET!, options);
   }
 
@@ -19,5 +19,10 @@ export class Jwt implements AuthToken {
     }
 
     return true;
+  }
+
+  decode(token: string): JwtPayload {
+    const decoded: any = jwt.decode(token);
+    return decoded as JwtPayload;
   }
 }

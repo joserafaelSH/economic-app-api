@@ -2,6 +2,9 @@ import { User } from "@/entities/User";
 import { UserRepository } from "@/repositories/UserRepository";
 
 export class UserInMemoryRepository implements UserRepository {
+  findByExternalId(external_id: string): Promise<User | null> {
+    throw new Error("Method not implemented.");
+  }
   private users: User[] = [];
 
   async findById(id: string): Promise<User | null> {

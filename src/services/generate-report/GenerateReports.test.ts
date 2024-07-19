@@ -1,12 +1,12 @@
-import { ExpenseRepository } from "@/repositories/ExpenseRepository";
-import { UserRepository } from "@/repositories/UserRepository";
-import { afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
-import { GenerateReport } from "./GenerateReport";
 import { ExpenseInMemoryRepository } from "@/database/in-memory/ExpenseInMemoryRepository";
 import { UserInMemoryRepository } from "@/database/in-memory/UserInMemoryRepository";
 import { Expense } from "@/entities/Expense";
 import { User } from "@/entities/User";
+import { ExpenseRepository } from "@/repositories/ExpenseRepository";
+import { UserRepository } from "@/repositories/UserRepository";
 import { faker } from "@faker-js/faker";
+import { afterEach, beforeAll, beforeEach, describe, expect, it } from "vitest";
+import { GenerateReport } from "./GenerateReport";
 
 describe("GenerateReports tests", () => {
   let generateReport: GenerateReport;

@@ -1,6 +1,7 @@
 import express from "express";
-import { LoggerMiddleware } from "./logger-middleware";
+import { LoggerMiddleware } from "./logger/logger-middleware";
 import { Logger } from "@/libs/logger/logger";
+import errorHandler from "./express-error";
 
 export class ExpressServer {
   port: number;
@@ -13,9 +14,10 @@ export class ExpressServer {
     this.port = Number(process.env.PORT) || 3000;
     this.app = express();
     this.baseUrl = `/api`;
-    this.app.use(express.json());
     this.app.use(LoggerMiddleware);
+    this.app.use(express.json());
     this.app.use(router);
+    this.app.use(errorHandler);
   }
 
   start() {
