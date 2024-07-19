@@ -1,5 +1,6 @@
 import { router } from "./http/express-router";
 import { ExpressServer } from "./http/express-server";
+import { sdk } from "./instrumentations";
 import { Logger } from "./libs/logger/logger";
 import { WinstonLogger } from "./libs/logger/winston-logger";
 

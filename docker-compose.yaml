@@ -11,3 +11,43 @@ services:
       POSTGRES_DB: economic-db
     ports:
       - 5433:5432
+  
+  prometheus:
+    image: prom/prometheus:v2.47.2
+    ports:
+      - 9090:9090
+    networks:
+      - live_prometheus
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:10.2.2
+    ports:
+      - 4000:3000
+    networks:
+      - live_prometheus
+
+  tracing:
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - 14268:14268
+      - 16686:16686
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otelcol-contrib/config.yaml
+    ports:
+      - 1888:1888 # pprof extension
+      - 8888:8888 # Prometheus metrics exposed by the Collector
+      - 8889:8889 # Prometheus exporter metrics
+      - 13133:13133 # health_check extension
+      - 4317:4317 # OTLP gRPC receiver
+      - 4318:4318 # OTLP http receiver
+      - 55679:55679 # zpages extension
+
+
+networks:
+  live_prometheus:
+    driver: bridge
