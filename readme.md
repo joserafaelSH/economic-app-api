@@ -27,7 +27,7 @@ Api para uma aplicação de gerenciamento de gastos.
 - [x] Adicionar camada http para os domain services
 - [x] Login Authentication
 - [x] GitHub Authentication
-- [x] Postman documentation:
+- [x] Postman documentation: https://documenter.getpostman.com/view/25046256/2sA3kUFMWH
 - [x] Error handler
 
 ## Stack
